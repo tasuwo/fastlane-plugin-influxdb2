@@ -4,23 +4,30 @@
 
 ## Getting Started
 
-This project is a [_fastlane_](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-influxdb2`, add it to your project by running:
+This project is a [_fastlane_](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-influxdb2`, add it to your project by add the following to the `Pluginfile`:
 
-```bash
-fastlane add_plugin influxdb2
+```ruby
+gem "fastlane-plugin-influxdb2", git: "https://github.com/tasuwo/fastlane-plugin-influxdb2"
 ```
 
 ## About influxdb2
 
-Writes data into InfluxDB 2.0
+Writes data into InfluxDB 2.0.
 
-**Note to author:** Add a more detailed description about this plugin here. If your plugin contains multiple actions, make sure to mention them here.
-
-## Example
-
-Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
-
-**Note to author:** Please set up a sample project to make it easy for users to explore what your plugin does. Provide everything that is necessary to try out the plugin in this project (including a sample Xcode/Android project if necessary)
+```ruby
+lane :your_lane do
+   influxdb2(
+       host: "https://localhost:8086",
+       token: "my-token",
+       bucket_name: "my-bucket",
+       organization_name: "my-org",
+       use_ssl: true,
+       measurement: "metrics",
+       tags: {tag1: "foo", tag2: "bar"},
+       fields: {a: 0.1, b: 1, c: "foo", d: true}
+   )
+end
+```
 
 ## Run tests for this plugin
 
